@@ -9,6 +9,7 @@ use UserBridge\Models\Users;
 use UserBridge\Services\ListUsersRetriever;
 use UserBridge\Services\SingleUserRetriever;
 use UserBridge\Services\UserCreator;
+use UserBridge\Services\UserSerialiser;
 use UserBridge\Services\UserService;
 
 class UserServiceTest extends TestCase
@@ -22,8 +23,9 @@ class UserServiceTest extends TestCase
         $listUsersRetriever = new ListUsersRetriever($client);
         $singleUserRetriever = new SingleUserRetriever($client);
         $userCreator = new UserCreator($client);
+        $userSeralier = new UserSerialiser();
 
-        $this->userService = new UserService($listUsersRetriever, $singleUserRetriever, $userCreator);
+        $this->userService = new UserService($listUsersRetriever, $singleUserRetriever, $userCreator, $userSeralier);
     }
 
     public function testGetUserById(): void
@@ -58,5 +60,35 @@ class UserServiceTest extends TestCase
         $userId = $this->userService->createUser($name, $job);
 
         $this->assertIsInt($userId);
+    }
+
+    public function testSeraliseToArray(): void
+    {
+        $user = $this->userService->getUserById(2);
+        $result = $this->userService->serialiseUserToArray($user);
+
+        $this->assertIsArray($result);
+        $this->assertEquals([
+            'id' => $user->getId(),
+            'email' => $user->getEmail(),
+            'first_name' => $user->getFirstName(),
+            'last_name' => $user->getLastName(),
+            'avatar' => $user->getAvatar(),
+        ], $result);
+    }
+
+    public function testSeraliseToJson(): void
+    {
+        $user = $this->userService->getUserById(2);
+        $result = $this->userService->serialiseUserToJson($user);
+
+        $this->assertIsString($result);
+        $this->assertEquals(json_encode([
+            'id' => $user->getId(),
+            'email' => $user->getEmail(),
+            'first_name' => $user->getFirstName(),
+            'last_name' => $user->getLastName(),
+            'avatar' => $user->getAvatar(),
+        ]), $result);
     }
 }

@@ -9,7 +9,7 @@ use UserBridge\Services\ListUsersRetriever;
 
 class ListUsersRetrieverTest extends TestCase
 {
-    public function testGetPaginatedUsers()
+    public function testGetPaginatedUsers(): void
     {
         $page = 1;
         $perPage = 6;
