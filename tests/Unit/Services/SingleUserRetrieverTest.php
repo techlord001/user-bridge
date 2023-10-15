@@ -20,8 +20,8 @@ class SingleUserRetrieverTest extends TestCase
             'avatar' => 'https://reqres.in/img/faces/2-image.jpg'
         ];
 
-        $httpClient = new GuzzleHttpClient();
-        $singleUserRetriever = new SingleUserRetriever($httpClient);
+        $client = new GuzzleHttpClient();
+        $singleUserRetriever = new SingleUserRetriever($client);
 
         $user = $singleUserRetriever->getUserById($userId);
 
