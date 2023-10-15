@@ -8,7 +8,7 @@ use UserBridge\Services\UserCreator;
 
 class UserCreatorTest extends TestCase
 {
-    public function testCreateUser()
+    public function testCreateUser(): void
     {
         $name = 'John Doe';
         $job = 'Developer';

@@ -9,7 +9,7 @@ use UserBridge\Services\SingleUserRetriever;
 
 class SingleUserRetrieverTest extends TestCase
 {
-    public function testGetUserById()
+    public function testGetUserById(): void
     {
         $userId = 2;
         $userData = [
