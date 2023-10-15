@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Services;
 
-use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use UserBridge\Http\GuzzleHttpClient;
 use UserBridge\Models\Users;

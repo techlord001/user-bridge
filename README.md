@@ -31,7 +31,7 @@ Users of the application can create a `User` object by providing the necessary d
 
 The `SingleUserRetriever` class is a service responsible for fetching individual user data from an external API. It implements the `SingleUserRetrieverInterface`, ensuring adherence to a defined contract for retrieving user data. The class is dependent on an HTTP client, specified by the `HttpClientInterface`, to make requests to the external API.
 
-When the `getUserById` method is called with a user ID as its parameter, `SingleUserRetriever` utilizes the HTTP client to send a GET request to the API. It then processes the API's response, extracting the user data and returning it as a `User` model instance. This encapsulation of the user retrieval process ensures that the class is easy to use, test, and maintain, promoting clean and efficient code organization.
+When the `getUserById` method is called with a user ID as its parameter, `SingleUserRetriever` utilizes the HTTP client to send a GET request to the API. It then processes the API's response, extracting the user data and returning it as a `User` model instance. 
 
 ---
 
@@ -47,6 +47,14 @@ The `Pagination` model encapsulates the pagination details associated with a set
 
 The `ListUsersRetriever` class is a service class responsible for retrieving a paginated list of users from an external API. It implements the `ListUsersRetrieverInterface`, ensuring it adheres to a specific contract for retrieving users. The class is dependent on an HTTP client, specified by the `HttpClientInterface`, to make requests to the external API. 
 
-When the `getPaginatedUsers` method is invoked, it uses the HTTP client to send a GET request to retrieve user data for a specific page. The response from the API is then processed to create an array of `User` objects and a `Pagination` object, which are used to instantiate a `Users` model. This encapsulation ensures that the process of retrieving and managing user data and pagination is streamlined and efficient.
+When the `getPaginatedUsers` method is invoked, it uses the HTTP client to send a GET request to retrieve user data for a specific page. The response from the API is then processed to create an array of `User` objects and a `Pagination` object, which are used to instantiate a `Users` model. 
 
 ---
+
+### UserCreator Service
+
+The `UserCreator` service is a specialized class designed to facilitate the creation of new users within the system. It implements the `UserCreatorInterface`, ensuring adherence to a predefined contract for user creation functionalities. This service is dependent on an HTTP client, injected via the constructor, to interact with an external API for user creation.
+
+The core functionality of this service is encapsulated in the `createUser` method. This method accepts two parameters, `$name` and `$job`, representing the user's name and job respectively. It utilizes the injected HTTP client to send a POST request to the `/api/users` endpoint, carrying the user's name and job as payload.
+
+Upon successful creation of the user, the external API responds with a JSON object containing the newly created user's details. The `createUser` method then processes this response, extracting and returning the user's ID as an integer. 
