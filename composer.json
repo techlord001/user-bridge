@@ -1,0 +1,22 @@
+{
+    "name": "techlord/userbridge",
+    "description": "A service for retrieving and creating users via a remote API",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^7.8"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Userbridge\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tech Lord",
+            "email": "45688942+techlord001@users.noreply.github.com"
+        }
+    ]
+}
