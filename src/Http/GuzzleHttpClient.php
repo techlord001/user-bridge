@@ -25,7 +25,7 @@ class GuzzleHttpClient implements HttpClientInterface
             return $this->client->request($method, $uri, $options);
         } catch (RequestException $e) {
             error_log($e->getMessage());
-            echo "A error occurred during the request - Code: " . $e->getCode() . $e->getMessage();
+            echo "An error occurred during the request - Code: " . $e->getCode() . $e->getMessage();
             return null;
         }
     }
